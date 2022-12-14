@@ -1,0 +1,27 @@
+﻿@page "/counter"
+@page "/workspaces"
+@page "/projects"
+
+@inherits OzComponentBase
+@using BlazorApp2.Client.Components
+@using BlazorApp2.Client.Library
+
+<div>
+    @if (new Uri(nav.Uri).AbsolutePath.StartsWith("/projects"))
+    {
+        <Projects></Projects>
+    }
+    else
+    {
+        <Workspaces></Workspaces>
+    }
+</div>
+
+
+@code {
+    protected override void OnNavigationChanged(NavigationContext args)
+    {
+        StateHasChanged();
+        base.OnNavigationChanged(args);
+    }
+}

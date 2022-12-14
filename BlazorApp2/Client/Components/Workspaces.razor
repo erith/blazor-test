@@ -1,0 +1,22 @@
+﻿@inject NavigationManager nav
+
+<h3>Workspaces</h3>
+
+<button @onclick="Click">CLICK</button>
+
+
+@code {
+
+    private void Click()
+    {
+        Console.WriteLine("Click");
+        nav.NavigateTo("/projects");
+    }
+
+    protected override void OnInitialized()
+    {
+        //
+        Console.WriteLine("Workspaces");
+        base.OnInitialized();
+    }
+}
