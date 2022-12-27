@@ -1,5 +1,42 @@
-﻿<h3>Menu</h3>
+﻿@using BlazorApp2.Client.Library;
+@inherits OzComponentBase
+
+<h3>Menu</h3>
+<span>@Count</span>
 
 @code {
+    bool isRender = false;
+    int Count { get; set; } = 0;
+    Subscription<RequireReload> sub { get; set; }
+    protected override void OnInitialized()
+    {
+        sub = this.eve?.Subscribe<RequireReload>(RequrieReload);
 
+        base.OnInitialized();
+    }
+
+    private void RequrieReload(RequireReload v)
+    {
+        this.Count = v.Count;
+        isRender = true;
+        StateHasChanged();
+        isRender = false;
+    }
+
+    public override void Dispose()
+    {
+        this.eve?.UnSubscribe(sub);
+        base.Dispose();
+    }
+
+    protected override void OnNavigationChanged(NavigationContext args)
+    {
+
+        base.OnNavigationChanged(args);
+    }
+
+    protected override bool ShouldRender()
+    {
+        return isRender;
+    }
 }

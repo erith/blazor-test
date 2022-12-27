@@ -67,7 +67,7 @@ namespace BlazorApp2.Client.Library
 
         public void Dispose()
         {
-            EventAggregator.UnSbscribe(this);
+            EventAggregator.UnSubscribe(this);
             isDisposed = true;
         }
     }
@@ -116,7 +116,7 @@ namespace BlazorApp2.Client.Library
             return actiondetail;
         }
 
-        public void UnSbscribe<TMessageType>(Subscription<TMessageType> subscription)
+        public void UnSubscribe<TMessageType>(Subscription<TMessageType> subscription)
         {
             Type t = typeof(TMessageType);
             if (subscriber.ContainsKey(t))
@@ -127,4 +127,8 @@ namespace BlazorApp2.Client.Library
     }
 
 
+    public class RequireReload
+    {
+        public int Count { get; set; } = 0;
+    }
 }

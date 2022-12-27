@@ -36,7 +36,7 @@ namespace BlazorApp2.Client.Library
         public virtual void Dispose()
         {
             if (eve != null && sub != null)
-                eve.UnSbscribe(sub);
+                eve.UnSubscribe(sub);
         }
     }
 }
